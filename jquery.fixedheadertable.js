@@ -64,6 +64,7 @@
       setup: function () {
         var $self       = $(this),
             self        = this,
+            $caption = $self.find('caption'),
             $thead      = $self.find('thead'),
             $tfoot      = $self.find('tfoot'),
             tfootHeight = 0,
@@ -135,7 +136,11 @@
             .addClass(settings.originalTable.attr('class'))
             .attr('style', settings.originalTable.attr('style'));
 
-          $thead.clone().appendTo($divHead.find('table'));
+          if ($caption) {
+              $caption.add($thead).clone().appendTo($divHead.find('table'));
+          } else {
+              $thead.clone().appendTo($divHead.find('table'));
+          }
         } else {
           $divHead = $wrapper.find('div.fht-thead');
         }
